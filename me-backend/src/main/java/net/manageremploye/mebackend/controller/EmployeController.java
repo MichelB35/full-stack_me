@@ -1,4 +1,5 @@
 package net.manageremploye.mebackend.controller;
+import net.manageremploye.mebackend.dto.DepartementDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,45 +25,14 @@ import java.util.List;
 @RequestMapping("/api/employe")
 public class EmployeController {
 	
-	private EmployeService employeService =  new EmployeService() {
-		
-		@Override
-		public EmployeDto getEmployeById(int employeId) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EmployeDto createEmployeDto(EmployeDto employeDto) {
-			// TODO Auto-generated method stub
-			return employeDto ;
-		}
-		@Override
-		public List<EmployeDto> getAllEmployes(){
-			return null;
-		}
-		@Override
-		public EmployeDto  updateEmple (int employeId, EmployeDto updatedEmploye){
+	private EmployeService employeService;
 
-			return  null;
-		}
-
-		@Override
-		public void deleteEmploye(int employeId){
-
-		}
-	}
-	;
-	
-	
 	//Built Add Employe Rest API
 	@PostMapping 
 	public ResponseEntity<EmployeDto> createEmploye(@RequestBody EmployeDto employeDto){
 
-		
 		EmployeDto savedEmploye = employeService.createEmployeDto(employeDto);
-		
-		
+
 		return new ResponseEntity<>(savedEmploye, HttpStatus.CREATED);
 		 
 	}
@@ -94,5 +64,6 @@ public class EmployeController {
 		employeService.deleteEmploye(employeId);
 		return ResponseEntity.ok("Employe delete successfully");
 	}
+
 
 }
